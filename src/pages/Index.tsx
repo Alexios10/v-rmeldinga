@@ -183,9 +183,9 @@ const Index = () => {
     }
   };
 
-  // Load initial weather data for New York
+  // Load initial weather data for Oslo
   useEffect(() => {
-    handleLocationSearch("New York");
+    handleLocationSearch("Oslo");
   }, []);
 
   return (
