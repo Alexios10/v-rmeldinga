@@ -32,11 +32,11 @@ const Index = () => {
   });
 
   const [forecastData, setForecastData] = useState<ForecastData[]>([
-    { day: "Idag", high: 75, low: 62, condition: "sunny" },
-    { day: "I morgen", high: 73, low: 59, condition: "cloudy" },
-    { day: "Onsdag", high: 68, low: 55, condition: "rain" },
-    { day: "Torsdag", high: 71, low: 58, condition: "partly-cloudy" },
-    { day: "Fredag", high: 74, low: 61, condition: "sunny" },
+    { day: "Today", high: 75, low: 62, condition: "sunny" },
+    { day: "Tomorrow", high: 73, low: 59, condition: "cloudy" },
+    { day: "Wednesday", high: 68, low: 55, condition: "rain" },
+    { day: "Thursday", high: 71, low: 58, condition: "partly-cloudy" },
+    { day: "Friday", high: 74, low: 61, condition: "sunny" },
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
