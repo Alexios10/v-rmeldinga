@@ -1,5 +1,12 @@
-
-import { Cloud, Sun, CloudRain, CloudSnow, Wind, Droplets, Thermometer } from "lucide-react";
+import {
+  Cloud,
+  Sun,
+  CloudRain,
+  CloudSnow,
+  Wind,
+  Droplets,
+  Thermometer,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface WeatherData {
@@ -61,28 +68,28 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
             {data.condition.replace("-", " ")}
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-auto">
           <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
             <Thermometer className="w-6 h-6 text-white" />
             <div className="text-white">
-              <p className="text-sm opacity-80">Feels like</p>
+              <p className="text-sm opacity-80">Føles som</p>
               <p className="text-xl font-semibold">{data.feelsLike}°</p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
             <Droplets className="w-6 h-6 text-white" />
             <div className="text-white">
-              <p className="text-sm opacity-80">Humidity</p>
+              <p className="text-sm opacity-80">Fuktighet</p>
               <p className="text-xl font-semibold">{data.humidity}%</p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
             <Wind className="w-6 h-6 text-white" />
             <div className="text-white">
-              <p className="text-sm opacity-80">Wind</p>
+              <p className="text-sm opacity-80">vind</p>
               <p className="text-xl font-semibold">{data.windSpeed} mph</p>
             </div>
           </div>

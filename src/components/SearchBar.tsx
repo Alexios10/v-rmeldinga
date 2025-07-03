@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -27,7 +26,7 @@ export const SearchBar = ({ onSearch, isLoading }: SearchBarProps) => {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <Input
             type="text"
-            placeholder="Enter city name (e.g., London, Tokyo, Paris)"
+            placeholder="Skriv inn bynavn (f.eks. London, Tokyo, Paris)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 bg-white/50 border-white/30 text-gray-800 placeholder-gray-600 focus:bg-white/70 transition-colors"

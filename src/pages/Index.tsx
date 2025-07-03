@@ -32,11 +32,11 @@ const Index = () => {
   });
 
   const [forecastData, setForecastData] = useState<ForecastData[]>([
-    { day: "Today", high: 75, low: 62, condition: "sunny" },
-    { day: "Tomorrow", high: 73, low: 59, condition: "cloudy" },
-    { day: "Wednesday", high: 68, low: 55, condition: "rain" },
-    { day: "Thursday", high: 71, low: 58, condition: "partly-cloudy" },
-    { day: "Friday", high: 74, low: 61, condition: "sunny" },
+    { day: "Idag", high: 75, low: 62, condition: "sunny" },
+    { day: "I morgen", high: 73, low: 59, condition: "cloudy" },
+    { day: "Onsdag", high: 68, low: 55, condition: "rain" },
+    { day: "Torsdag", high: 71, low: 58, condition: "partly-cloudy" },
+    { day: "Fredag", high: 74, low: 61, condition: "sunny" },
   ]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -50,14 +50,14 @@ const Index = () => {
       const description = weatherDescription.toLowerCase();
 
       if (main === "clear") return "sunny";
-      if (main === "clouds") {
+      if (main === "cloudy") {
         return description.includes("few") || description.includes("scattered")
-          ? "partly-cloudy"
-          : "cloudy";
+          ? "delvis skyet"
+          : "skyet";
       }
-      if (main === "rain" || main === "drizzle") return "rain";
-      if (main === "snow") return "rain"; // Using rain icon for snow as we don't have a snow condition
-      return "partly-cloudy";
+      if (main === "rain" || main === "drizzle") return "regn";
+      if (main === "snow") return "snø";
+      return "delvis skyet";
     },
     []
   );
@@ -232,10 +232,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                Weather App
+                Værmeldinga
               </h1>
               <p className="text-xl text-white/80 drop-shadow">
-                Beautiful weather forecasts at your fingertips
+                Vakre værmeldinger lett tilgjengelig
               </p>
             </div>
 
@@ -245,7 +245,7 @@ const Index = () => {
 
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-white drop-shadow-lg">
-                5-Day Forecast
+                5-dagers værmelding
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {forecastData.map((forecast, index) => (
