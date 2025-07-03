@@ -52,12 +52,12 @@ const Index = () => {
       if (main === "clear") return "sunny";
       if (main === "cloudy") {
         return description.includes("few") || description.includes("scattered")
-          ? "partly cloudy"
+          ? "partly-cloudy"
           : "cloudy";
       }
       if (main === "rain" || main === "drizzle") return "rain";
       if (main === "snow") return "snow";
-      return "partly cloudy";
+      return "partly-cloudy";
     },
     []
   );
