@@ -6,6 +6,7 @@ import {
   Wind,
   Droplets,
   Thermometer,
+  CloudSun,
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
@@ -33,7 +34,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
       case "rain":
         return <CloudRain className="w-16 h-16 text-blue-300" />;
       case "partly-cloudy":
-        return <CloudSnow className="w-16 h-16 text-blue-200" />;
+        return <CloudSun className="w-16 h-16 text-blue-200" />;
       default:
         return <Sun className="w-16 h-16 text-yellow-300" />;
     }
