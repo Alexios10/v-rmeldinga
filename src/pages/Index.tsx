@@ -43,6 +43,7 @@ const Index = () => {
 
   const API_KEY = import.meta.env.VITE_API_KEY;
 
+  // Function to map OpenWeatherMap conditions to our icons
   const mapWeatherCondition = (
     weatherMain: string,
     weatherDescription: string
@@ -61,6 +62,7 @@ const Index = () => {
     return "partly-cloudy";
   };
 
+  // Function to handle location search
   const handleLocationSearch = async (location: string) => {
     setIsLoading(true);
 
@@ -74,7 +76,6 @@ const Index = () => {
 
       if (!geocodingResponse.ok) {
         const errorText = await geocodingResponse.text();
-        console.error(`Geocoding error response: ${errorText}`);
 
         if (geocodingResponse.status === 401) {
           throw new Error(
