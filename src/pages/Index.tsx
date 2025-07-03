@@ -206,20 +206,20 @@ const Index = () => {
                 return;
               }
             }
-            // If reverse geocoding fails, fallback to Oslo
+            // If reverse geocoding fails, fallback to New York
             handleLocationSearch("New York");
           } catch {
             handleLocationSearch("New York");
           }
         },
         (error) => {
-          // If user denies or error, fallback to Oslo
-          handleLocationSearch("Oslo");
+          // If user denies or error, fallback to New York
+          handleLocationSearch("New York");
         }
       );
     } else {
-      // Geolocation not supported, fallback to Oslo
-      handleLocationSearch("Oslo");
+      // Geolocation not supported, fallback to New York
+      handleLocationSearch("New York");
     }
   }, [API_KEY, handleLocationSearch]);
 
