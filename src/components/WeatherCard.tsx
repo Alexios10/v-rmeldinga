@@ -28,13 +28,29 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
   const getWeatherIcon = (condition: string) => {
     switch (condition) {
       case "sunny":
-        return <Sun className="w-16 h-16 text-yellow-300" />;
+        return (
+          <img
+            src="/public/assets/sun.gif"
+            alt="Sunny"
+            className="w-16 h-16 text-yellow-300"
+          />
+        );
       case "cloudy":
-        return <Cloud className="w-16 h-16 text-gray-300" />;
+        return (
+          <img src="/public/assets/cloudy.gif" alt="" className="w-16 h-16" />
+        );
       case "rain":
-        return <CloudRain className="w-16 h-16 text-blue-300" />;
+        return (
+          <img src="/public/assets/rain.gif" alt="" className="w-16 h-16" />
+        );
       case "partly-cloudy":
-        return <CloudSun className="w-16 h-16 text-blue-200" />;
+        return (
+          <img
+            src="/public/assets/partly-cloudy.gif"
+            alt="Sunny"
+            className="w-16 h-16 text-yellow-300"
+          />
+        );
       default:
         return <Sun className="w-16 h-16 text-yellow-300" />;
     }
@@ -91,7 +107,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
             <Wind className="w-6 h-6 text-white" />
             <div className="text-white">
               <p className="text-sm opacity-80">vind</p>
-              <p className="text-xl font-semibold">{data.windSpeed} mph</p>
+              <p className="text-xl font-semibold">{data.windSpeed} m/s</p>
             </div>
           </div>
         </div>

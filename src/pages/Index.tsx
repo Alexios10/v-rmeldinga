@@ -31,6 +31,7 @@ const Index = () => {
     feelsLike: 75,
   });
 
+  // dummy data for initial render
   const [forecastData, setForecastData] = useState<ForecastData[]>([
     { day: "Today", high: 75, low: 62, condition: "sunny" },
     { day: "Tomorrow", high: 73, low: 59, condition: "cloudy" },
@@ -140,14 +141,17 @@ const Index = () => {
           feelsLike: Math.round(weatherData.main.feels_like), // Keep in Celsius
         });
 
-        // Process forecast data (group by day and get daily high/low)
+        // Norwegian weekday
+        const norwegianDays = ["Søndag", "Mandag", "Tirsdag", "Onsdag"];
+
         const dailyForecasts: {
-          [key: string]: { temps: number[]; condition: string };
+          [key: string]: { temps: number[]; condition: string; date: Date };
         } = {};
 
         forecastData.list.forEach((item: any) => {
           const date = new Date(item.dt * 1000);
-          const dayKey = date.toLocaleDateString("en-US", { weekday: "long" });
+          const dayIndex = date.getDay();
+          const dayKey = dayIndex.toString();
           const temp = Math.round(item.main.temp); // Keep in Celsius
 
           if (!dailyForecasts[dayKey]) {
@@ -157,20 +161,29 @@ const Index = () => {
                 item.weather[0].main,
                 item.weather[0].description
               ),
+              date: date,
             };
           }
 
           dailyForecasts[dayKey].temps.push(temp);
         });
 
-        const processedForecast = Object.entries(dailyForecasts)
+        // Sort by date to ensure correct order
+        const sortedForecasts = Object.values(dailyForecasts).sort(
+          (a, b) => a.date.getTime() - b.date.getTime()
+        );
+
+        const processedForecast = sortedForecasts
           .slice(0, 5)
-          .map(([day, data], index) => ({
-            day: index === 0 ? "Today" : day,
-            high: Math.max(...data.temps),
-            low: Math.min(...data.temps),
-            condition: data.condition,
-          }));
+          .map((data, index) => {
+            const dayIndex = data.date.getDay();
+            return {
+              day: index === 0 ? "I dag" : norwegianDays[dayIndex],
+              high: Math.max(...data.temps),
+              low: Math.min(...data.temps),
+              condition: data.condition,
+            };
+          });
 
         setForecastData(processedForecast);
 
