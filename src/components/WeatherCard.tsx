@@ -25,6 +25,23 @@ interface WeatherCardProps {
 }
 
 export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
+  const getCondition = (condition: string) => {
+    switch (condition) {
+      case "sunny":
+        return "Sol";
+      case "cloudy":
+        return "Overskyet";
+      case "rain":
+        return "Regn";
+      case "partly-cloudy":
+        return "Delvis skyet";
+      case "snow":
+        return "Snø";
+      default:
+        return condition;
+    }
+  };
+
   const getWeatherIcon = (condition: string) => {
     switch (condition) {
       case "sunny":
@@ -71,6 +88,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
   return (
     <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/25 transition-all duration-300 shadow-xl">
       <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+        {/* Left section */}
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-bold text-white mb-2 drop-shadow">
             {data.location}
@@ -82,10 +100,11 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
             </span>
           </div>
           <p className="text-xl text-white/80 capitalize drop-shadow">
-            {data.condition.replace("-", " ")}
+            {getCondition(data.condition)}
           </p>
         </div>
 
+        {/* Right section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-auto">
           <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
             <Thermometer className="w-6 h-6 text-white" />
