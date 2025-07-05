@@ -19,23 +19,19 @@ export const ForecastCard = ({ data, isLoading }: ForecastCardProps) => {
       case "sunny":
         return (
           <img
-            src="/public/assets/sun.gif"
+            src="/assets/sun.gif"
             alt="Sunny"
             className="w-16 h-16 text-yellow-300"
           />
         );
       case "cloudy":
-        return (
-          <img src="/public/assets/cloudy.gif" alt="" className="w-16 h-16" />
-        );
+        return <img src="/assets/cloudy.gif" alt="" className="w-16 h-16" />;
       case "rain":
-        return (
-          <img src="/public/assets/rain.gif" alt="" className="w-16 h-16" />
-        );
+        return <img src="/assets/rain.gif" alt="" className="w-16 h-16" />;
       case "partly-cloudy":
         return (
           <img
-            src="/public/assets/partly-cloudy.gif"
+            src="/assets/partly-cloudy.gif"
             alt="Sunny"
             className="w-16 h-16 text-yellow-300"
           />
