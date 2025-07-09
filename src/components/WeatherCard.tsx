@@ -1,13 +1,4 @@
-import {
-  Cloud,
-  Sun,
-  CloudRain,
-  CloudSnow,
-  Wind,
-  Droplets,
-  Thermometer,
-  CloudSun,
-} from "lucide-react";
+import { Sun, Wind, Droplets, Thermometer } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface WeatherData {

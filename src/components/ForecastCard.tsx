@@ -1,4 +1,4 @@
-import { Cloud, Sun, CloudRain, CloudSnow } from "lucide-react";
+import { Sun } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface ForecastData {

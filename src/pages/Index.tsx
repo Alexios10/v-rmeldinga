@@ -142,7 +142,15 @@ const Index = () => {
         });
 
         // Norwegian weekday
-        const norwegianDays = ["Søndag", "Mandag", "Tirsdag", "Onsdag"];
+        const norwegianDays = [
+          "Søndag",
+          "Mandag",
+          "Tirsdag",
+          "Onsdag",
+          "Torsdag",
+          "Fredag",
+          "Lørdag",
+        ];
 
         const dailyForecasts: {
           [key: string]: { temps: number[]; condition: string; date: Date };
