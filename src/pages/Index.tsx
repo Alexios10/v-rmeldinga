@@ -12,6 +12,8 @@ interface WeatherData {
   humidity: number;
   windSpeed: number;
   feelsLike: number;
+  sunrise: number; // unix timestamp (seconds)
+  sunset: number; // unix timestamp (seconds)
 }
 
 interface ForecastData {
@@ -29,6 +31,8 @@ const Index = () => {
     humidity: 65,
     windSpeed: 8,
     feelsLike: 75,
+    sunrise: 0,
+    sunset: 0,
   });
 
   // dummy data for initial render
@@ -139,6 +143,8 @@ const Index = () => {
           humidity: weatherData.main.humidity,
           windSpeed: Math.round(weatherData.wind.speed * 3.6), // Convert m/s to km/h
           feelsLike: Math.round(weatherData.main.feels_like), // Keep in Celsius
+          sunrise: weatherData.sys?.sunrise || 0,
+          sunset: weatherData.sys?.sunset || 0,
         });
 
         // Norwegian weekday

@@ -8,6 +8,8 @@ interface WeatherData {
   humidity: number;
   windSpeed: number;
   feelsLike: number;
+  sunrise?: number;
+  sunset?: number;
 }
 
 interface WeatherCardProps {
@@ -16,7 +18,17 @@ interface WeatherCardProps {
 }
 
 export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
-  const getCondition = (condition: string) => {
+  // Helper to format unix timestamp (seconds) to HH:mm
+  const formatTime = (unix: number) => {
+    if (!unix) return "-";
+    const date = new Date(unix * 1000);
+    return date.toLocaleTimeString("nb-NO", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    });
+  };
+  const getNorwegianCondition = (condition: string) => {
     switch (condition) {
       case "sunny":
         return "Sol";
@@ -71,7 +83,6 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
       </Card>
     );
   }
-
   return (
     <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/25 transition-all duration-300 shadow-xl">
       <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
@@ -87,8 +98,32 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
             </span>
           </div>
           <p className="text-xl text-white/80 capitalize drop-shadow">
-            {getCondition(data.condition)}
+            {getNorwegianCondition(data.condition)}
           </p>
+
+          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Sunrise */}
+            <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
+              <Sun className="w-6 h-6 text-yellow-300" />
+              <div className="text-white">
+                <p className="text-sm opacity-80">Sol opp</p>
+                <p className="text-lg font-semibold">
+                  {formatTime(data.sunrise ?? 0)}
+                </p>
+              </div>
+            </div>
+
+            {/* Sunset */}
+            <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
+              <Sun className="w-6 h-6 text-orange-400" />
+              <div className="text-white">
+                <p className="text-sm opacity-80">Sol ned</p>
+                <p className="text-lg font-semibold">
+                  {formatTime(data.sunset ?? 0)}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right section */}
