@@ -201,7 +201,7 @@ const Index = () => {
 
         setForecastData(processedForecast);
 
-        toast.success(`Weather updated for ${name}, ${country}`);
+        // toast.success(`Weather updated for ${name}, ${country}`);
       } catch (error) {
         console.error("Error fetching weather data:", error);
         toast.error(
