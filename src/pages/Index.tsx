@@ -259,10 +259,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="text-center mb-8">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-                Værmeldinga
+                Værmeldingen
               </h1>
               <p className="text-xl text-white/80 drop-shadow">
-                Værmeldinga lett tilgjengelig
+                Værmeldingen lett tilgjengelig
               </p>
             </div>
 

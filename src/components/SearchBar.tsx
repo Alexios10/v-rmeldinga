@@ -29,7 +29,7 @@ export const SearchBar = ({ onSearch, isLoading }: SearchBarProps) => {
             placeholder="Skriv inn bynavn (f.eks. London, Tokyo, Paris)"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-10 bg-white/50 border-white/30 text-gray-800 placeholder-gray-600 focus:bg-white/70 transition-colors"
+            className="pl-10 bg-white/50 border-white/50 text-gray-800 placeholder-gray-600 focus:bg-white/80  transition-colors"
             disabled={isLoading}
           />
         </div>
