@@ -266,7 +266,11 @@ const Index = () => {
               </p>
             </div>
 
-            <SearchBar onSearch={handleLocationSearch} isLoading={isLoading} />
+            <SearchBar
+              onSearch={handleLocationSearch}
+              isLoading={isLoading}
+              apiKey={API_KEY}
+            />
 
             <WeatherCard data={weatherData} isLoading={isLoading} />
 

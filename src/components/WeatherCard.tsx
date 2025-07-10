@@ -84,7 +84,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
     );
   }
   return (
-    <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/25 transition-all duration-300 shadow-xl">
+    <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/25 transition-all duration-300 shadow-xl ">
       <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         {/* Left section */}
         <div className="text-center md:text-left">
@@ -115,7 +115,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
 
             {/* Sunset */}
             <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
-              <Sun className="w-6 h-6 text-orange-400" />
+              <Sun className="w-6 h-6 text-orange-300" />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol ned</p>
                 <p className="text-lg font-semibold">
