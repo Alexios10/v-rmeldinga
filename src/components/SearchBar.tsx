@@ -60,11 +60,23 @@ export const SearchBar = ({ onSearch, isLoading, apiKey }: SearchBarProps) => {
     }
   };
 
+  const handleClear = () => {
+    setSearchTerm("");
+    setSuggestions([]);
+    setShowSuggestions(false);
+  };
+
   return (
     <Card className="p-6 bg-white/20 backdrop-blur-md border-white/30 shadow-lg relative z-10">
       <form onSubmit={handleSubmit} className="flex space-x-4 relative">
         <div className="flex-1 relative">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <button
+            onClick={handleClear}
+            className="absolute right-2 top-2 rounded-lg w-4 text-gray-500"
+          >
+            X
+          </button>
           <Input
             type="text"
             placeholder="Skriv inn bynavn (f.eks. London, Tokyo, Paris)"
