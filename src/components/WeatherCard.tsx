@@ -1,4 +1,11 @@
-import { Sun, Wind, Droplets, Thermometer } from "lucide-react";
+import {
+  Sun,
+  Wind,
+  Droplets,
+  Thermometer,
+  Sunrise,
+  Sunset,
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 interface WeatherData {
@@ -104,7 +111,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Sunrise */}
             <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
-              <Sun className="w-6 h-6 text-yellow-300" />
+              <Sunrise />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol opp</p>
                 <p className="text-lg font-semibold">
@@ -115,7 +122,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
 
             {/* Sunset */}
             <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
-              <Sun className="w-6 h-6 text-orange-300" />
+              <Sunset />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol ned</p>
                 <p className="text-lg font-semibold">
