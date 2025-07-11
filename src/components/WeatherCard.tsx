@@ -111,7 +111,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Sunrise */}
             <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
-              <Sunrise />
+              <Sunrise className="text-white" />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol opp</p>
                 <p className="text-lg font-semibold">
@@ -122,7 +122,7 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
 
             {/* Sunset */}
             <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
-              <Sunset />
+              <Sunset className="text-white" />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol ned</p>
                 <p className="text-lg font-semibold">
