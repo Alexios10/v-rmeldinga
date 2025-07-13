@@ -254,43 +254,74 @@ const Index = () => {
     <div className="min-h-screen relative overflow-hidden">
       <WeatherBackground condition={weatherData.condition} />
 
-      <div className="relative z-10 min-h-screen">
+      <main className="relative z-10 min-h-screen" id="main-content">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto space-y-8">
-            <div className="text-center mb-8">
+            <header className="text-center mb-8" role="banner">
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
                 Værmeldingen
               </h1>
               <p className="text-xl text-white/80 drop-shadow">
                 Værmeldingen lett tilgjengelig
               </p>
-            </div>
+            </header>
 
-            <SearchBar
-              onSearch={handleLocationSearch}
-              isLoading={isLoading}
-              apiKey={API_KEY}
-            />
+            <nav
+              aria-label="Søk etter sted"
+              className="mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            >
+              <SearchBar
+                onSearch={handleLocationSearch}
+                isLoading={isLoading}
+                apiKey={API_KEY}
+              />
+            </nav>
 
-            <WeatherCard data={weatherData} isLoading={isLoading} />
+            <section aria-label="Nåværende vær" className="mb-8">
+              <WeatherCard data={weatherData} isLoading={isLoading} />
+              {/* ARIA live region for screen reader announcements */}
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                className="sr-only"
+                id="weather-announcement"
+              >
+                {isLoading
+                  ? "Laster værdata..."
+                  : `Været for ${weatherData.location}: ${weatherData.temperature} grader, ${weatherData.condition}.`}
+              </div>
+            </section>
 
-            <div className="space-y-4">
+            <section aria-label="5-dagers værmelding" className="space-y-4">
               <h2 className="text-2xl font-bold text-white drop-shadow-lg">
                 5-dagers værmelding
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {forecastData.map((forecast, index) => (
-                  <ForecastCard
+                  <div
+                    className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
+                    tabIndex={0}
                     key={index}
-                    data={forecast}
-                    isLoading={isLoading}
-                  />
+                  >
+                    <ForecastCard data={forecast} isLoading={isLoading} />
+                  </div>
                 ))}
               </div>
-            </div>
+              {/* ARIA live region for forecast updates */}
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                className="sr-only"
+                id="forecast-announcement"
+              >
+                {isLoading
+                  ? "Laster værmelding..."
+                  : `5-dagers værmelding oppdatert for ${weatherData.location}.`}
+              </div>
+            </section>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };

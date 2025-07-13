@@ -81,36 +81,66 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
 
   if (isLoading) {
     return (
-      <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 animate-pulse">
+      <Card
+        className="p-4 bg-black/40 backdrop-blur-md border-white/30 animate-pulse"
+        aria-busy="true"
+        aria-label="Loading forecast data"
+      >
         <div className="space-y-4">
-          <div className="h-8 bg-white/30 rounded w-3/4"></div>
-          <div className="h-16 bg-white/30 rounded w-1/2"></div>
-          <div className="h-6 bg-white/30 rounded w-full"></div>
+          <div
+            className="h-8 bg-white/30 rounded w-3/4"
+            aria-hidden="true"
+          ></div>
+          <div
+            className="h-16 bg-white/30 rounded w-1/2"
+            aria-hidden="true"
+          ></div>
+          <div
+            className="h-6 bg-white/30 rounded w-full"
+            aria-hidden="true"
+          ></div>
         </div>
+        <span className="sr-only">Laster inn vær informasjon</span>
       </Card>
     );
   }
   return (
-    <Card className="p-8 bg-white/20 backdrop-blur-md border-white/30 hover:bg-white/25 transition-all duration-300 shadow-xl ">
-      <div className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <Card
+      className="p-8 bg-black/60 backdrop-blur-md border-white/30 hover:bg-black/70 focus-within:bg-black/70 transition-all duration-300 shadow-xl focus-within:ring-2 focus-within:ring-white/50"
+      role="region"
+      aria-labelledby="weather-location"
+      tabIndex={0}
+    >
+      <section className="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         {/* Left section */}
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-bold text-white mb-2 drop-shadow">
+          <h2
+            id="weather-location"
+            className="text-2xl font-bold text-white mb-2 drop-shadow"
+          >
             {data.location}
           </h2>
           <div className="flex items-center justify-center md:justify-start space-x-4 mb-4">
-            {getWeatherIcon(data.condition)}
-            <span className="text-6xl font-light text-white drop-shadow-lg">
+            <div aria-label={getNorwegianCondition(data.condition)}>
+              {getWeatherIcon(data.condition)}
+            </div>
+            <span
+              aria-label={`Current temperature ${data.temperature} degrees Celsius`}
+              className="text-6xl font-light text-white drop-shadow-lg"
+            >
               {data.temperature}°
             </span>
           </div>
-          <p className="text-xl text-white/80 capitalize drop-shadow">
-            {getNorwegianCondition(data.condition)}
+          <p className="text-xl text-white/90 capitalize drop-shadow">
+            {getNorwegianCondition(data.condition.replace("-", " "))}
           </p>
 
-          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-auto mt-5">
             {/* Sunrise */}
-            <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
+            <div
+              className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start"
+              aria-label="Sunrise"
+            >
               <Sunrise className="text-white" />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol opp</p>
@@ -121,7 +151,10 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
             </div>
 
             {/* Sunset */}
-            <div className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start">
+            <div
+              className="flex items-center space-x-3 rounded-lg p-2 justify-center mr-5 md:mr-0 md:justify-start"
+              aria-label="Sol ned"
+            >
               <Sunset className="text-white" />
               <div className="text-white">
                 <p className="text-sm opacity-80">Sol ned</p>
@@ -135,31 +168,64 @@ export const WeatherCard = ({ data, isLoading }: WeatherCardProps) => {
 
         {/* Right section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full md:w-auto">
-          <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
+          <div
+            className="flex items-center space-x-3 bg-black/30 rounded-lg p-4 border border-white/20"
+            role="group"
+            aria-labelledby="Feels-like-label"
+          >
             <Thermometer className="w-6 h-6 text-white" />
             <div className="text-white">
-              <p className="text-sm opacity-80">Føles som</p>
-              <p className="text-xl font-semibold">{data.feelsLike}°</p>
+              <p id="feels-like-label" className="text-sm text-white/80">
+                Føles som
+              </p>
+              <p
+                className="text-xl font-semibold"
+                aria-label={`Feels like ${data.feelsLike} degrees Celsius`}
+              >
+                {data.feelsLike}°
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
-            <Droplets className="w-6 h-6 text-white" />
+          <div
+            className="flex items-center space-x-3 bg-black/30 rounded-lg p-4 border border-white/20"
+            role="group"
+            aria-labelledby="Humidity-label"
+          >
+            <Droplets className="w-6 h-6 text-white" aria-hidden={true} />
             <div className="text-white">
-              <p className="text-sm opacity-80">Fuktighet</p>
-              <p className="text-xl font-semibold">{data.humidity}%</p>
+              <p id="humidity-label" className="text-sm text-white/80">
+                Fuktighet
+              </p>
+              <p
+                className="text-xl font-semibold"
+                aria-label={`Humidity ${data.humidity} percent`}
+              >
+                {data.humidity}%
+              </p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 bg-white/10 rounded-lg p-4">
-            <Wind className="w-6 h-6 text-white" />
+          <div
+            className="flex items-center space-x-3 bg-black/30 rounded-lg p-4 border border-white/20"
+            role="group"
+            aria-labelledby="wind-label"
+          >
+            <Wind className="w-6 h-6 text-white" aria-hidden={true} />
             <div className="text-white">
-              <p className="text-sm opacity-80">vind</p>
-              <p className="text-xl font-semibold">{data.windSpeed} m/s</p>
+              <p id="wind-label" className="text-sm text-white/80">
+                Vind
+              </p>
+              <p
+                className="text-xl font-semibold"
+                aria-label={`Wind speed ${data.windSpeed} meters per hour`}
+              >
+                {data.windSpeed} m/s
+              </p>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Card>
   );
 };
