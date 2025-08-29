@@ -1,6 +1,6 @@
 Værmeldingen ☀️🌧️
 
-En enkel vær-app som viser oppdatert værdata for en valgt by – inkludert temperatur, vind, luftfuktighet og generelle værforhold.
+En enkel vær-app som viser oppdatert værdata for en valgt by inkludert temperatur, vind, luftfuktighet og generelle værforhold.
 Brukeren kan søke etter ulike byer og få en ryddig presentasjon av været akkurat nå.
 
 Funksjoner
